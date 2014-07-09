@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Leaflet.Urbis Example</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+      <style>
+        .cf:before, .cf:after { content: " "; display: table; }
+        .cf:after { clear: both; }
+        .cf { *zoom: 1; }
+        body, select {
+          font-family: Sans-Serif;
+        }
+        #map {
+          height: 500px;
+        }
+        .actions {
+          margin-top: 10px;
+        }
+        .group {
+          background-color: #eee;
+          float: left;
+          padding: 3px 6px;
+        }
+        .group:not(:first-child) {
+          margin-left: 10px;
+        }
+      </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <div class="actions cf">
+      <div class="group">
+        <strong>Layers:</strong>
+        <select id="urbis-layer"></select>
+        <button id="btn-load">Load</button>
+        <button id="btn-toggle">Toggle</button>
+        <button id="btn-unload">Unload</button>
+      </div>
+      <div class="group">
+        <button id="btn-reset-options">Reset map options</button>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="urbis-layers.js"></script>
+    <script src="urbis.js"></script>
+    <script>
+      var map;
+
+      // Initialize an UrbIS map (empty by default, no layers loaded)
+      map = new L.UrbisMap('map');
+
+      $(document).ready(function() {
+        // Load UrbIS layers in dropdown
+        var $selectUrbisLayer = $('#urbis-layer');
+
+        $.each(URBIS_LAYERS, function (k, v) {
+          $selectUrbisLayer.append(
+            $('<option></option>').attr('value', k).text(v.title)
+          );
+        });
+
+
+        // HELPERS...
+
+        // Key from URBIS_LAYERS
+        function currentLayerUrbisKey() {
+          return $selectUrbisLayer.val();
+        }
+
+        // Key for named layers
+        function currentLayerKey() {
+          return map.getKeyFromUrbis(currentLayerUrbisKey());
+        }
+
+
+        // CLICK HANDLERS...
+
+        // Load a given UrbIS layer
+        $('#btn-load').click(function (evt) {
+          evt.preventDefault();
+          map.loadUrbisLayer(currentLayerUrbisKey());
+        });
+
+        // Toggle the visibility (of a named layer)
+        $('#btn-toggle').click(function (evt) {
+          evt.preventDefault();
+          map.toggleLayer(currentLayerKey());
+        });
+
+        // Unload the given named layer
+        $('#btn-unload').click(function (evt) {
+          evt.preventDefault();
+          map.unloadLayer(currentLayerKey());
+        });
+
+        // Reset the options of the map (e.g. center, zoom)
+        $('#btn-reset-options').click(function (evt) {
+          evt.preventDefault();
+          map.setOptions();
+        });
+      });
+    </script>
+  </body>
+</html>
