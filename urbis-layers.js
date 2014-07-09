@@ -39,6 +39,24 @@ URBIS_LAYERS = {
     },
   },
 
+  'base-map-ortho': {
+    key: 'base-map',
+    title: 'Orthographic',
+    type: 'wms',
+    url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/gwc/service/wms',
+    options: {
+      layers: 'urbisORTHO',
+      format: 'image/png',
+      transparent: true,
+      crs: L.CRS.EPSG31370,
+      attribution: 'Realized by means of Brussels UrbIS &copy; &reg;',
+    },
+    mapOptions: {
+      center: [50.84535101789271, 4.351873397827148],
+      zoom: 14,
+    },
+  },
+
   'regional-roads': {
     title: 'Regional roads',
     type: 'wms',
