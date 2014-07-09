@@ -1,3 +1,4 @@
+// Latest version available at: http://urbiscloud.irisnet.be/???
 
 URBIS_LAYERS = {
   'base-map-fr': {
