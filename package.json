@@ -4,7 +4,7 @@
   "description": "Leaflet extension for UrbIS",
   "main": "",
   "scripts": {
-    "test": "testem ci -t test/index.html"
+    "test": "node_modules/.bin/jshint . --exclude node_modules/ && testem ci -t test/index.html"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,30 @@
   },
   "homepage": "https://github.com/CIRB/Leaflet.Urbis",
   "devDependencies": {
+    "chai": "^1.9.1",
+    "jshint": "^2.5.2",
+    "mocha": "^1.20.1",
     "testem": "^0.6.17"
+  },
+  "jshintConfig": {
+    "curly": true,
+    "eqnull": true,
+    "eqeqeq": true,
+    "undef": true,
+    "unused": true,
+    "node": true,
+    "devel": true,
+    "maxcomplexity": 5,
+    "jquery": true,
+    "browser": true,
+    "globals": {
+      "describe": false,
+      "it": false,
+      "before": false,
+      "beforeEach": false,
+      "after": false,
+      "chai": false,
+      "L": false
+    }
   }
 }
