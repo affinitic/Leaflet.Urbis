@@ -5,7 +5,7 @@ L.UrbisMap.addLayer('base-map-fr', {
     title: 'Street map (FR)',
     language: 'fr',
     type: 'wms',
-    url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/gwc/service/wms',
+    url: 'http://gis.irisnet.be/geoserver/gwc/service/wms',
     options: {
       layers: 'urbisFR',
       format: 'image/png',
@@ -24,7 +24,7 @@ L.UrbisMap.addLayer('base-map-nl', {
     title: 'Street map (NL)',
     language: 'nl',
     type: 'wms',
-    url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/gwc/service/wms',
+    url: 'http://gis.irisnet.be/geoserver/gwc/service/wms',
     options: {
       layers: 'urbisNL',
       format: 'image/png',
@@ -42,7 +42,7 @@ L.UrbisMap.addLayer('base-map-ortho', {
     key: 'base-map',
     title: 'Orthographic',
     type: 'wms',
-    url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/gwc/service/wms',
+    url: 'http://gis.irisnet.be/geoserver/gwc/service/wms',
     options: {
       layers: 'urbisORTHO',
       format: 'image/png',
@@ -59,7 +59,7 @@ L.UrbisMap.addLayer('base-map-ortho', {
 L.UrbisMap.addLayer('regional-roads', {
     title: 'Regional roads',
     type: 'wms',
-    url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/wms',
+    url: 'http://gis.irisnet.be/geoserver/wms',
     options: {
       layers: 'urbis:URB_A_SS',
       styles: 'URB_A_SS_FIXMYSTREET',
@@ -71,7 +71,7 @@ L.UrbisMap.addLayer('regional-roads', {
 L.UrbisMap.addLayer('municipal-boundaries', {
     title: 'Municipal boundaries',
     type: 'wms',
-    url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/wms',
+    url: 'http://gis.irisnet.be/geoserver/wms',
     options: {
       layers: 'urbis:URB_A_MU',
       styles: 'fixmystreet_municipalities',

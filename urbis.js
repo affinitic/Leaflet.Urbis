@@ -6,11 +6,10 @@ L.UrbisMap = L.Map.extend({
     zoom: 14,
   },
 
-  _namedLayers: {},
-
   initialize: function (id, options) {  // (HTMLElement or String, Object)
     options = $.extend(this.DEFAULTS, options);
     L.Map.prototype.initialize.call(this, id, options);
+    this._namedLayers = {};
   },
 
   setOptions: function (options) {
@@ -31,6 +30,22 @@ L.UrbisMap = L.Map.extend({
     }
   },
 
+  toggleLayer: function (key, visibility) {  // (String, Boolean)
+    if (!this.hasLayer(key)) {
+      this.loadLayer(key);
+    } else {
+      $(this._namedLayers[key].getContainer()).toggle(visibility);
+    }
+  },
+
+  hasLayer: function (key) {  // (String)
+    return (key in this._namedLayers);
+  },
+
+  getLayer: function (key) {  // (String)
+    if (!this.hasLayer(key)) { return; }
+    return this._namedLayers[key];
+  },
 
   loadLayer: function (key, options) {  // (String, Object)
     var layer;
@@ -55,21 +70,6 @@ L.UrbisMap = L.Map.extend({
 
   unloadLayer: function (key) {  // (String)
     this._unsetNamedLayer(key);
-  },
-
-  hasLayer: function (key) {  // (String)
-    var exists = (key in this._namedLayers);
-    return exists;
-  },
-
-  getLayer: function (key) {  // (String)
-    if (!this.hasLayer(key)) { return; }
-    return this._namedLayers[key];
-  },
-
-  toggleLayer: function (key, visibility) {  // (String, Boolean)
-    if (!this.hasLayer(key)) { return; }
-    $(this._namedLayers[key].getContainer()).toggle(visibility);
   },
 
   _setNamedLayer: function (key, layer) {  // (String, L.ILayer)
