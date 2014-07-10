@@ -23,12 +23,15 @@ L.UrbisMap = L.Map.extend({
   setOptions: function (options) {
     options = options || this.DEFAULTS;
 
+    // Center AND zoom available
     if (options.center && options.zoom !== undefined) {
       this.setView(L.latLng(options.center), options.zoom, {reset: true});
     } else {
+      // Only zoom available
       if (options.zoom) {
         this.setZoom(options.zoom);
       }
+      // Only center available
       if (options.center) {
         this.panTo(L.latLng(options.center));
       }
@@ -36,7 +39,8 @@ L.UrbisMap = L.Map.extend({
   },
 
   loadUrbisLayer: function (urbisKey, namedKey) {  // (String, String)
-    if (!(urbisKey in URBIS_LAYERS)) {  // Is the given layer available at UrbIS?
+    // Is the given layer available at UrbIS?
+    if (!(urbisKey in URBIS_LAYERS)) {
       console.log('ERROR: Unknown UrbIS layer "' + urbisKey + '".');
       return;
     }
@@ -51,19 +55,18 @@ L.UrbisMap = L.Map.extend({
   loadLayer: function (options, key) {  // (Object, String)
     var layer;
 
+    // Factory based on layer type
     switch (options.type) {
-      case 'wms':
-        layer = L.tileLayer.wms(options.url, options.options);
-        break;
-
-      default:
-        console.log('ERROR: Unkown layer type "' + options.type + '".');
+      case 'wms': layer = L.tileLayer.wms(options.url, options.options); break;
+      default: console.log('ERROR: Unkown layer type "' + options.type + '".');
     }
 
+    // Load map options provided by the layer
     if (options.mapOptions !== undefined) {
       this.setOptions(options.mapOptions);
     }
 
+    // Register as named layer
     if (key) {
       this._setNamedLayer(key, layer);
     }
