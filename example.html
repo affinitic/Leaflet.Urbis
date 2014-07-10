@@ -47,8 +47,8 @@
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src="urbis-layers.js"></script>
     <script src="urbis.js"></script>
+    <script src="urbis-layers.js"></script>
     <script>
       var map;
 
@@ -59,7 +59,7 @@
         // Load UrbIS layers in dropdown
         var $selectUrbisLayer = $('#urbis-layer');
 
-        $.each(URBIS_LAYERS, function (k, v) {
+        $.each(L.UrbisMap.layers, function (k, v) {
           $selectUrbisLayer.append(
             $('<option></option>').attr('value', k).text(v.title)
           );
@@ -73,12 +73,6 @@
           return $selectUrbisLayer.val();
         }
 
-        // Key for named layers
-        function currentLayerKey() {
-          return map.getKeyFromUrbis(currentLayerUrbisKey());
-        }
-
-
         // CLICK HANDLERS...
 
         // Load a given UrbIS layer
@@ -90,13 +84,13 @@
         // Toggle the visibility (of a named layer)
         $('#btn-toggle').click(function (evt) {
           evt.preventDefault();
-          map.toggleLayer(currentLayerKey());
+          map.toggleLayer(currentLayerUrbisKey());
         });
 
         // Unload the given named layer
         $('#btn-unload').click(function (evt) {
           evt.preventDefault();
-          map.unloadLayer(currentLayerKey());
+          map.unloadLayer(currentLayerUrbisKey());
         });
 
         // Reset the options of the map (e.g. center, zoom)

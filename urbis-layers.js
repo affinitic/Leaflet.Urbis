@@ -1,7 +1,6 @@
 // Latest version available at: http://urbiscloud.irisnet.be/???
 
-URBIS_LAYERS = {
-  'base-map-fr': {
+L.UrbisMap.addLayer('base-map-fr', {
     key: 'base-map',
     title: 'Street map (FR)',
     language: 'fr',
@@ -17,10 +16,10 @@ URBIS_LAYERS = {
     mapOptions: {
       center: [50.84535101789271, 4.351873397827148],
       zoom: 14,
-    },
-  },
+    }
+});
 
-  'base-map-nl': {
+L.UrbisMap.addLayer('base-map-nl', {
     key: 'base-map',
     title: 'Street map (NL)',
     language: 'nl',
@@ -36,10 +35,10 @@ URBIS_LAYERS = {
     mapOptions: {
       center: [50.84535101789271, 4.351873397827148],
       zoom: 14,
-    },
-  },
+    }
+});
 
-  'base-map-ortho': {
+L.UrbisMap.addLayer('base-map-ortho', {
     key: 'base-map',
     title: 'Orthographic',
     type: 'wms',
@@ -54,10 +53,10 @@ URBIS_LAYERS = {
     mapOptions: {
       center: [50.84535101789271, 4.351873397827148],
       zoom: 14,
-    },
-  },
+    }
+});
 
-  'regional-roads': {
+L.UrbisMap.addLayer('regional-roads', {
     title: 'Regional roads',
     type: 'wms',
     url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/wms',
@@ -66,10 +65,10 @@ URBIS_LAYERS = {
       styles: 'URB_A_SS_FIXMYSTREET',
       format: 'image/png',
       transparent: true,
-    },
-  },
+    }
+});
 
-  'municipal-boundaries': {
+L.UrbisMap.addLayer('municipal-boundaries', {
     title: 'Municipal boundaries',
     type: 'wms',
     url: 'http://fixmystreet.irisnetlab.be/urbis/geoserver/wms',
@@ -78,6 +77,5 @@ URBIS_LAYERS = {
       styles: 'fixmystreet_municipalities',
       format: 'image/png',
       transparent: true,
-    },
-  },
-};
+    }
+});

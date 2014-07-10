@@ -1,12 +1,17 @@
 
 describe('Urbis Map', function(){
-    var expect = chai.expect;
+    var expect = chai.expect, elem, map;
+    beforeEach(function () {
+        elem = $('<div> </div>')[0];
+        map = new L.UrbisMap(elem);
+    });
     it('should init', function(){
-        var elem = $('<div> </div>');
-        var map = new L.UrbisMap(elem[0]);
-        map.loadUrbisLayer();
+        expect(map).to.have.property('_container');
+        expect($(elem).hasClass('leaflet-container')).equal(true);
+        expect(map._container).equal(elem);
+    });
 
-        // ...
-        // expect(map).to.have.property('...');
+    it('should load a layer', function(){
+        map.loadLayer('base-map-fr');
     });
 });

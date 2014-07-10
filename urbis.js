@@ -9,13 +9,6 @@ L.UrbisMap = L.Map.extend({
   _namedLayers: {},
 
   initialize: function (id, options) {  // (HTMLElement or String, Object)
-    if (!URBIS_LAYERS) {
-      console.log(
-        'ERROR: `URBIS_LAYERS` not defined. Please load "urbis-layers.js".'
-        //+ ' The latest version is available at: http://urbiscloud.irisnet.be/???'
-      );
-    }
-
     options = $.extend(this.DEFAULTS, options);
     L.Map.prototype.initialize.call(this, id, options);
   },
@@ -38,22 +31,10 @@ L.UrbisMap = L.Map.extend({
     }
   },
 
-  loadUrbisLayer: function (urbisKey, namedKey) {  // (String, String)
-    // Is the given layer available at UrbIS?
-    if (!(urbisKey in URBIS_LAYERS)) {
-      console.log('ERROR: Unknown UrbIS layer "' + urbisKey + '".');
-      return;
-    }
 
-    var options = URBIS_LAYERS[urbisKey];
-    options.urbisKey = urbisKey;
-    namedKey = namedKey || this.getKeyFromUrbis(urbisKey);
-
-    this.loadLayer(options, namedKey);
-  },
-
-  loadLayer: function (options, key) {  // (Object, String)
+  loadLayer: function (key, options) {  // (String, Object)
     var layer;
+    options = options || L.UrbisMap.layers[key];
 
     // Factory based on layer type
     switch (options.type) {
@@ -91,10 +72,6 @@ L.UrbisMap = L.Map.extend({
     $(this._namedLayers[key].getContainer()).toggle(visibility);
   },
 
-  getKeyFromUrbis: function (urbisKey) {  // (String)
-    return URBIS_LAYERS[urbisKey].key || urbisKey;
-  },
-
   _setNamedLayer: function (key, layer) {  // (String, L.ILayer)
     if (this.hasLayer(key)) {
       if (this._namedLayers[key] === layer) { return; }
@@ -110,4 +87,11 @@ L.UrbisMap = L.Map.extend({
     this.removeLayer(this._namedLayers[key]);
     delete this._namedLayers[key];
   },
+
+  statics: {
+    layers: {},
+    addLayer: function (key, options) {
+      this.layers[key] = options;
+    }
+  }
 });
