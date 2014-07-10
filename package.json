@@ -1,0 +1,26 @@
+{
+  "name": "Leaflet.Urbis",
+  "version": "0.0.1",
+  "description": "Leaflet extension for UrbIS",
+  "main": "",
+  "scripts": {
+    "test": "testem ci -t test/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CIRB/Leaflet.Urbis.git"
+  },
+  "keywords": [
+    "Leaflet",
+    "Urbis",
+    "API"
+  ],
+  "author": "CIRB",
+  "bugs": {
+    "url": "https://github.com/CIRB/Leaflet.Urbis/issues"
+  },
+  "homepage": "https://github.com/CIRB/Leaflet.Urbis",
+  "devDependencies": {
+    "testem": "^0.6.17"
+  }
+}

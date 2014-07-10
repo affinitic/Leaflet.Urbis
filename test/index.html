@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <!-- requirements -->
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+  <!-- app -->
+  <script src="../urbis-layers.js"></script>
+  <script src="../urbis.js"></script>
+
+  <!-- test libs -->
+  <script src="chai.js"></script>
+  <script src="mocha.js"></script>
+  <script src="/testem.js"></script>
+  <script>
+  mocha.setup('bdd');
+  </script>
+
+  <!-- unit tests -->
+  <script src="test.maps.js"></script>
+  <script>
+    mocha.run();
+  </script>
+</body>
+</html>
