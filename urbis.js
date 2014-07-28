@@ -75,7 +75,7 @@ L.UrbisMap = L.Map.extend({
     // Factory based on layer type
     switch (options.type) {
       case 'wms': layer = L.tileLayer.wms(options.url, options.options); break;
-      default: console.log('ERROR: Unkown layer type "' + options.type + '".');
+      default: layer = L.tileLayer(options.url, options.options);
     }
 
     // Load map options provided by the layer
