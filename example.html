@@ -51,11 +51,11 @@
     <script>
       var map;
 
-      // Initialize an UrbIS map (empty by default, no layers loaded)
+      // Initialize an UrbIS map (empty by default, no layers loaded).
       map = new L.UrbisMap('map');
 
       $(document).ready(function() {
-        // Load UrbIS layers in dropdown
+        // Load UrbIS layers in dropdown.
         var $selectUrbisLayer = $('#urbis-layer');
 
         $.each(L.UrbisMap.layers, function (k, v) {
@@ -67,26 +67,26 @@
 
         // HELPERS...
 
-        // Key from URBIS_LAYERS
+        // Key of the currently selected layer.
         function currentLayerUrbisKey() {
           return $selectUrbisLayer.val();
         }
 
         // CLICK HANDLERS...
 
-        // Toggle the visibility (of a named layer)
+        // Toggle the visibility (of a named layer).
         $('#btn-toggle').click(function (evt) {
           evt.preventDefault();
           map.toggleLayer(currentLayerUrbisKey());
         });
 
-        // Unload the given named layer
+        // Unload the given named layer.
         $('#btn-unload').click(function (evt) {
           evt.preventDefault();
           map.unloadLayer(currentLayerUrbisKey());
         });
 
-        // Reset the options of the map (e.g. center, zoom)
+        // Reset the options of the map (e.g. center, zoom).
         $('#btn-reset-options').click(function (evt) {
           evt.preventDefault();
           map.setOptions();
