@@ -31,10 +31,10 @@ L.UrbisMap = L.Map.extend({
   },
 
   toggleLayer: function (key, visibility) {  // (String, Boolean)
-    if (!this.hasLayer(key) && visibility !== false) {
-      this.loadLayer(key);
-    } else {
+    if (this.hasLayer(key)) {
       $(this._namedLayers[key].getContainer()).toggle(visibility);
+    } else if (visibility !== false) {
+      this.loadLayer(key);
     }
   },
 
