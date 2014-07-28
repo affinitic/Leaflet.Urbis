@@ -30,6 +30,15 @@ L.UrbisMap = L.Map.extend({
     }
   },
 
+  setCssSize: function (cls) {  // (String)
+    this.$container.removeClass(function (index, css) {
+      return (css.match (/(^|\s)mapsize-\S+/g) || []).join(' ');
+    });
+    if (cls) {
+      this.$container.addClass(cls);
+    }
+  },
+
   toggleLayer: function (key, visibility) {  // (String, Boolean)
     if (this.hasLayer(key)) {
       $(this._namedLayers[key].getContainer()).toggle(visibility);
@@ -86,6 +95,11 @@ L.UrbisMap = L.Map.extend({
     if (!this.hasLayer(key)) { return; }
     this.removeLayer(this._namedLayers[key]);
     delete this._namedLayers[key];
+  },
+
+  _initContainer: function (id) {  // (String)
+    L.Map.prototype._initContainer.call(this, id);
+    this.$container = $(this._container);
   },
 
   statics: {

@@ -16,6 +16,13 @@
         #map {
           height: 500px;
         }
+        #map.mapsize-small {
+          height: 200px;
+        }
+        #map.mapsize-500x300 {
+          height: 300px;
+          width: 500px;
+        }
         .actions {
           margin-top: 10px;
         }
@@ -42,6 +49,10 @@
       <div class="group">
         <button id="btn-reset-options">Reset map options</button>
       </div>
+      <div class="group">
+        <strong>Dimensions:</strong>
+        <select id="map-dimensions"></select>
+      </div>
     </div>
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -57,10 +68,22 @@
       $(document).ready(function() {
         // Load UrbIS layers in dropdown.
         var $selectUrbisLayer = $('#urbis-layer');
-
         $.each(L.UrbisMap.layers, function (k, v) {
           $selectUrbisLayer.append(
             $('<option></option>').attr('value', k).text(v.title)
+          );
+        });
+
+        // Initialize available map dimensions.
+        var mapDimensions = {
+          '': 'Default',
+          'mapsize-small': 'Small',
+          'mapsize-500x300': '500x300',
+        };
+        var $selectMapDimensions = $('#map-dimensions');
+        $.each(mapDimensions, function (k, v) {
+          $selectMapDimensions.append(
+            $('<option></option>').attr('value', k).text(v)
           );
         });
 
@@ -90,6 +113,22 @@
         $('#btn-reset-options').click(function (evt) {
           evt.preventDefault();
           map.setOptions();
+        });
+
+        // .
+        $('#btn-add-dragdrop-marker').click(function (evt) {
+          evt.preventDefault();
+        });
+
+        // .
+        $('#btn-center-map-on-latest-marker').click(function (evt) {
+          evt.preventDefault();
+        });
+
+        // Change map dimensions.
+        $selectMapDimensions.change(function (evt) {
+          evt.preventDefault();
+          map.setCssSize($selectMapDimensions.val());
         });
       });
     </script>
