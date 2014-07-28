@@ -31,7 +31,7 @@ L.UrbisMap = L.Map.extend({
   },
 
   toggleLayer: function (key, visibility) {  // (String, Boolean)
-    if (!this.hasLayer(key)) {
+    if (!this.hasLayer(key) && visibility !== false) {
       this.loadLayer(key);
     } else {
       $(this._namedLayers[key].getContainer()).toggle(visibility);
