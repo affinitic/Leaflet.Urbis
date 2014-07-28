@@ -60,7 +60,17 @@ L.UrbisMap = L.Map.extend({
 
   loadLayer: function (key, options) {  // (String, Object)
     var layer;
-    options = options || L.UrbisMap.layersSettings[key];
+    if (options === undefined) {
+      if (!(key in L.UrbisMap.layersSettings)) {
+        throw new Error('Layer settings not found for "' + key + '".');
+      }
+      options = L.UrbisMap.layersSettings[key];
+
+      // If options contains a `key` parameter, use it for named layers.
+      // This allows to define groups of layers that act like a "singleton" (only one of them is loaded).
+      // Example: Base map available in different languages or visualizations (map or satellite view).
+      key = options.key || key;
+    }
 
     // Factory based on layer type
     switch (options.type) {
