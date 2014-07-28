@@ -60,7 +60,7 @@ L.UrbisMap = L.Map.extend({
 
   loadLayer: function (key, options) {  // (String, Object)
     var layer;
-    options = options || L.UrbisMap.layers[key];
+    options = options || L.UrbisMap.layersSettings[key];
 
     // Factory based on layer type
     switch (options.type) {
@@ -105,9 +105,6 @@ L.UrbisMap = L.Map.extend({
   },
 
   statics: {
-    layers: {},
-    addLayer: function (key, options) {
-      this.layers[key] = options;
-    },
+    layersSettings: {},
   },
 });

@@ -68,7 +68,7 @@
       $(document).ready(function() {
         // Load UrbIS layers in dropdown.
         var $selectUrbisLayer = $('#urbis-layer');
-        $.each(L.UrbisMap.layers, function (k, v) {
+        $.each(L.UrbisMap.layersSettings, function (k, v) {
           $selectUrbisLayer.append(
             $('<option></option>').attr('value', k).text(v.title)
           );
