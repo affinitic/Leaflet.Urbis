@@ -33,7 +33,7 @@ L.UrbisMap = L.Map.extend({
 
   setCssSize: function (cls) {  // (String)
     this.$container.removeClass(function (index, css) {
-      return (css.match (/(^|\s)mapsize-\S+/g) || []).join(' ');
+      return (css.match (/(^|\s)map-size-\S+/g) || []).join(' ');
     });
     if (cls) {
       this.$container.addClass(cls);
