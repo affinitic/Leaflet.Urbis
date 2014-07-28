@@ -106,6 +106,6 @@ L.UrbisMap = L.Map.extend({
     layers: {},
     addLayer: function (key, options) {
       this.layers[key] = options;
-    }
-  }
+    },
+  },
 });
