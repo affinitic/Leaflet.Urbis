@@ -2,6 +2,7 @@ L.UrbisMap = L.Map.extend({
   VERSION: '0.1.0',
 
   DEFAULTS: {
+    animate: true,
     center: [50.84535101789271, 4.351873397827148],
     zoom: 14,
   },
@@ -37,6 +38,7 @@ L.UrbisMap = L.Map.extend({
     if (cls) {
       this.$container.addClass(cls);
     }
+    this.invalidateSize(this.options.animate);
   },
 
   toggleLayer: function (key, visibility) {  // (String, Boolean)
