@@ -4,6 +4,7 @@ L.UrbisMap = L.Map.extend({
   DEFAULTS: {
     animate: true,
     center: [50.84535101789271, 4.351873397827148],
+    cssSizeRegex: /(^|\s)map-size-\S+/g,
     zoom: 14,
   },
 
@@ -32,8 +33,9 @@ L.UrbisMap = L.Map.extend({
   },
 
   setCssSize: function (cls) {  // (String)
+    var that = this;
     this.$container.removeClass(function (index, css) {
-      return (css.match (/(^|\s)map-size-\S+/g) || []).join(' ');
+      return (css.match(that.options.cssSizeRegex) || []).join(' ');
     });
     if (cls) {
       this.$container.addClass(cls);
