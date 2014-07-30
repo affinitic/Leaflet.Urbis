@@ -63,12 +63,12 @@
       var map;
 
       // Initialize an UrbIS map (empty by default, no layers loaded).
-      map = new L.UrbisMap('map');
+      map = new L.Urbis.Map('map');
 
       $(document).ready(function() {
         // Load UrbIS layers in dropdown.
         var $selectUrbisLayer = $('#urbis-layer');
-        $.each(L.UrbisMap.layersSettings, function (k, v) {
+        $.each(L.Urbis.Map.layersSettings, function (k, v) {
           $selectUrbisLayer.append(
             $('<option></option>').attr('value', k).text(v.title)
           );
